@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions 
+    name="UserService"
+    targetNamespace="http://localhost:8000/soap"
+    xmlns:tns="http://localhost:8000/soap"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+
+    <types>
+        <xsd:schema targetNamespace="http://localhost:8000/soap">
+            
+            <!-- CREATE USER -->
+            <xsd:element name="CreateUserRequest">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="name" type="xsd:string"/>
+                        <xsd:element name="email" type="xsd:string"/>
+                        <xsd:element name="age" type="xsd:int"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="CreateUserResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="success" type="xsd:boolean"/>
+                        <xsd:element name="id" type="xsd:int"/>
+                        <xsd:element name="name" type="xsd:string"/>
+                        <xsd:element name="email" type="xsd:string"/>
+                        <xsd:element name="age" type="xsd:int"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <!-- GET USER -->
+            <xsd:element name="GetUserRequest">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="id" type="xsd:int"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="GetUserResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="id" type="xsd:int" minOccurs="0"/>
+                        <xsd:element name="name" type="xsd:string" minOccurs="0"/>
+                        <xsd:element name="email" type="xsd:string" minOccurs="0"/>
+                        <xsd:element name="age" type="xsd:int" minOccurs="0"/>
+                        <xsd:element name="error" type="xsd:string" minOccurs="0"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <!-- GET ALL USERS -->
+            <xsd:element name="GetAllUsersRequest"/>
+            <xsd:element name="GetAllUsersResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="User" maxOccurs="unbounded" minOccurs="0">
+                            <xsd:complexType>
+                                <xsd:sequence>
+                                    <xsd:element name="id" type="xsd:int"/>
+                                    <xsd:element name="name" type="xsd:string"/>
+                                    <xsd:element name="email" type="xsd:string"/>
+                                    <xsd:element name="age" type="xsd:int"/>
+                                </xsd:sequence>
+                            </xsd:complexType>
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <!-- DELETE USER -->
+            <xsd:element name="DeleteUserRequest">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="id" type="xsd:int"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="DeleteUserResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="success" type="xsd:boolean"/>
+                        <xsd:element name="message" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:schema>
+    </types>
+
+    <!-- Messages -->
+    <message name="CreateUserRequest">
+        <part name="parameters" element="tns:CreateUserRequest"/>
+    </message>
+    <message name="CreateUserResponse">
+        <part name="parameters" element="tns:CreateUserResponse"/>
+    </message>
+
+    <message name="GetUserRequest">
+        <part name="parameters" element="tns:GetUserRequest"/>
+    </message>
+    <message name="GetUserResponse">
+        <part name="parameters" element="tns:GetUserResponse"/>
+    </message>
+
+    <message name="GetAllUsersRequest">
+        <part name="parameters" element="tns:GetAllUsersRequest"/>
+    </message>
+    <message name="GetAllUsersResponse">
+        <part name="parameters" element="tns:GetAllUsersResponse"/>
+    </message>
+
+    <message name="DeleteUserRequest">
+        <part name="parameters" element="tns:DeleteUserRequest"/>
+    </message>
+    <message name="DeleteUserResponse">
+        <part name="parameters" element="tns:DeleteUserResponse"/>
+    </message>
+
+    <!-- PortType -->
+    <portType name="UserServicePortType">
+        <operation name="CreateUser">
+            <input message="tns:CreateUserRequest"/>
+            <output message="tns:CreateUserResponse"/>
+        </operation>
+        <operation name="GetUser">
+            <input message="tns:GetUserRequest"/>
+            <output message="tns:GetUserResponse"/>
+        </operation>
+        <operation name="GetAllUsers">
+            <input message="tns:GetAllUsersRequest"/>
+            <output message="tns:GetAllUsersResponse"/>
+        </operation>
+        <operation name="DeleteUser">
+            <input message="tns:DeleteUserRequest"/>
+            <output message="tns:DeleteUserResponse"/>
+        </operation>
+    </portType>
+
+    <!-- Binding -->
+    <binding name="UserServiceBinding" type="tns:UserServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="CreateUser">
+            <soap:operation soapAction="CreateUser"/>
+            <input><soap:body use="literal"/></input>
+            <output><soap:body use="literal"/></output>
+        </operation>
+        <operation name="GetUser">
+            <soap:operation soapAction="GetUser"/>
+            <input><soap:body use="literal"/></input>
+            <output><soap:body use="literal"/></output>
+        </operation>
+        <operation name="GetAllUsers">
+            <soap:operation soapAction="GetAllUsers"/>
+            <input><soap:body use="literal"/></input>
+            <output><soap:body use="literal"/></output>
+        </operation>
+        <operation name="DeleteUser">
+            <soap:operation soapAction="DeleteUser"/>
+            <input><soap:body use="literal"/></input>
+            <output><soap:body use="literal"/></output>
+        </operation>
+    </binding>
+
+    <!-- Service -->
+    <service name="UserService">
+        <port name="UserServicePort" binding="tns:UserServiceBinding">
+            <soap:address location="http://127.0.0.1:8000/soap"/>
+        </port>
+    </service>
+</definitions>

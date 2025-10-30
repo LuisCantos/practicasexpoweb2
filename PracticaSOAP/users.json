@@ -1,0 +1,26 @@
+[
+  {
+    "id": 3,
+    "name": "Luis Cantos",
+    "email": "Cantos@example.com",
+    "age": 30
+  },
+  {
+    "id": 4,
+    "name": "Julio Cesar",
+    "email": "julio@example.com",
+    "age": 26
+  },
+  {
+    "id": 5,
+    "name": "Diego",
+    "email": "diego@example.com",
+    "age": 23
+  },
+  {
+    "id": 6,
+    "name": "kevin Plaza",
+    "email": "Kevin@gmail.com",
+    "age": 21
+  }
+]

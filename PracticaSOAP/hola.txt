@@ -1,0 +1,20 @@
+async
+body = awit req.vody()
+cuerpoxml = body.decode('utf-8')
+
+datos_soap = parse_peticion_soap(cuerpo_xmi)
+operacion = datos_soap.get('operacion')
+params = datos_soap.get('params')
+if operacion == "ObtenerUsuario":
+usuarios = road_users()
+[usuarios_xml(usuario) for usuario in usuarios]
+}
+cuerpo-respuest = f"""<ObtenerUsuarioResponse>
+{usuario-a-xml}
+</ObtenerUsuarioResponse>"""
+
+elif operacion == "CrearUsuario":
+usuarios = read_users()
+nueva_id = max([u.id for usuario in usuarios], default=0)+
+nuevo_usuarios = usuarios ()
+id=nueva_idnombre=str[params.get('nombre)]
