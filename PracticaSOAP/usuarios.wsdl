@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:plink="http://schemas.xmlsoap.org/ws/2003/05/partner-link/" xmlns:wsdlsoap11="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdlsoap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap11enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap11env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soap12env="http://www.w3.org/2003/05/soap-envelope" xmlns:soap12enc="http://www.w3.org/2003/05/soap-encoding" xmlns:wsa="http://schemas.xmlsoap.org/ws/2003/03/addressing" xmlns:xop="http://www.w3.org/2004/08/xop/include" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://localhost:8000/soap" targetNamespace="http://localhost:8000/soap" name="Application">
+    <wsdl:types>
+        <xs:schema targetNamespace="http://localhost:8000/soap" elementFormDefault="qualified">
+            <xs:complexType name="Usuario">
+                <xs:sequence>
+                    <xs:element name="id" type="xs:integer" minOccurs="0" nillable="true"/>
+                    <xs:element name="nombre" type="xs:string" minOccurs="0" nillable="true"/>
+                    <xs:element name="email" type="xs:string" minOccurs="0" nillable="true"/>
+                    <xs:element name="edad" type="xs:integer" minOccurs="0" nillable="true"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ObtenerUsuario"/>
+            <xs:complexType name="ActualizarUsuario">
+                <xs:sequence>
+                    <xs:element name="id" type="xs:integer" minOccurs="0" nillable="true"/>
+                    <xs:element name="nombre" type="xs:string" minOccurs="0" nillable="true"/>
+                    <xs:element name="email" type="xs:string" minOccurs="0" nillable="true"/>
+                    <xs:element name="edad" type="xs:integer" minOccurs="0" nillable="true"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ActualizarUsuarioResponse">
+                <xs:sequence>
+                    <xs:element name="ActualizarUsuarioResult" type="xs:boolean" minOccurs="0" nillable="true"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="BorrarUsuario">
+                <xs:sequence>
+                    <xs:element name="id" type="xs:integer" minOccurs="0" nillable="true"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="BorrarUsuarioResponse">
+                <xs:sequence>
+                    <xs:element name="BorrarUsuarioResult" type="xs:boolean" minOccurs="0" nillable="true"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="CrearUsuario">
+                <xs:sequence>
+                    <xs:element name="nombre" type="xs:string" minOccurs="0" nillable="true"/>
+                    <xs:element name="email" type="xs:string" minOccurs="0" nillable="true"/>
+                    <xs:element name="edad" type="xs:integer" minOccurs="0" nillable="true"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="CrearUsuarioResponse">
+                <xs:sequence>
+                    <xs:element name="CrearUsuarioResult" type="tns:Usuario" minOccurs="0" nillable="true"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ObtenerUsuarioPorId">
+                <xs:sequence>
+                    <xs:element name="id" type="xs:integer" minOccurs="0" nillable="true"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ObtenerUsuarioPorIdResponse">
+                <xs:sequence>
+                    <xs:element name="ObtenerUsuarioPorIdResult" type="tns:Usuario" minOccurs="0" nillable="true"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="UsuarioArray">
+                <xs:sequence>
+                    <xs:element name="Usuario" type="tns:Usuario" minOccurs="0" maxOccurs="unbounded" nillable="true"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ObtenerUsuarioResponse">
+                <xs:sequence>
+                    <xs:element name="ObtenerUsuarioResult" type="tns:UsuarioArray" minOccurs="0" nillable="true"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="Usuario" type="tns:Usuario"/>
+            <xs:element name="ObtenerUsuario" type="tns:ObtenerUsuario"/>
+            <xs:element name="ActualizarUsuario" type="tns:ActualizarUsuario"/>
+            <xs:element name="ActualizarUsuarioResponse" type="tns:ActualizarUsuarioResponse"/>
+            <xs:element name="BorrarUsuario" type="tns:BorrarUsuario"/>
+            <xs:element name="BorrarUsuarioResponse" type="tns:BorrarUsuarioResponse"/>
+            <xs:element name="CrearUsuario" type="tns:CrearUsuario"/>
+            <xs:element name="CrearUsuarioResponse" type="tns:CrearUsuarioResponse"/>
+            <xs:element name="ObtenerUsuarioPorId" type="tns:ObtenerUsuarioPorId"/>
+            <xs:element name="ObtenerUsuarioPorIdResponse" type="tns:ObtenerUsuarioPorIdResponse"/>
+            <xs:element name="UsuarioArray" type="tns:UsuarioArray"/>
+            <xs:element name="ObtenerUsuarioResponse" type="tns:ObtenerUsuarioResponse"/>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="ObtenerUsuario">
+        <wsdl:part name="ObtenerUsuario" element="tns:ObtenerUsuario"/>
+    </wsdl:message>
+    <wsdl:message name="ObtenerUsuarioResponse">
+        <wsdl:part name="ObtenerUsuarioResponse" element="tns:ObtenerUsuarioResponse"/>
+    </wsdl:message>
+    <wsdl:message name="CrearUsuario">
+        <wsdl:part name="CrearUsuario" element="tns:CrearUsuario"/>
+    </wsdl:message>
+    <wsdl:message name="CrearUsuarioResponse">
+        <wsdl:part name="CrearUsuarioResponse" element="tns:CrearUsuarioResponse"/>
+    </wsdl:message>
+    <wsdl:message name="BorrarUsuario">
+        <wsdl:part name="BorrarUsuario" element="tns:BorrarUsuario"/>
+    </wsdl:message>
+    <wsdl:message name="BorrarUsuarioResponse">
+        <wsdl:part name="BorrarUsuarioResponse" element="tns:BorrarUsuarioResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ObtenerUsuarioPorId">
+        <wsdl:part name="ObtenerUsuarioPorId" element="tns:ObtenerUsuarioPorId"/>
+    </wsdl:message>
+    <wsdl:message name="ObtenerUsuarioPorIdResponse">
+        <wsdl:part name="ObtenerUsuarioPorIdResponse" element="tns:ObtenerUsuarioPorIdResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ActualizarUsuario">
+        <wsdl:part name="ActualizarUsuario" element="tns:ActualizarUsuario"/>
+    </wsdl:message>
+    <wsdl:message name="ActualizarUsuarioResponse">
+        <wsdl:part name="ActualizarUsuarioResponse" element="tns:ActualizarUsuarioResponse"/>
+    </wsdl:message>
+    <wsdl:service name="UsuarioService">
+        <wsdl:port name="Application" binding="tns:Application">
+            <wsdlsoap11:address location="http://localhost:8000/soap"/>
+        </wsdl:port>
+    </wsdl:service>
+    <wsdl:portType name="Application">
+        <wsdl:operation name="ObtenerUsuario" parameterOrder="ObtenerUsuario">
+            <wsdl:documentation>Obtiene todos los usuarios</wsdl:documentation>
+            <wsdl:input name="ObtenerUsuario" message="tns:ObtenerUsuario"/>
+            <wsdl:output name="ObtenerUsuarioResponse" message="tns:ObtenerUsuarioResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="CrearUsuario" parameterOrder="CrearUsuario">
+            <wsdl:documentation>Crea un nuevo usuario</wsdl:documentation>
+            <wsdl:input name="CrearUsuario" message="tns:CrearUsuario"/>
+            <wsdl:output name="CrearUsuarioResponse" message="tns:CrearUsuarioResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="BorrarUsuario" parameterOrder="BorrarUsuario">
+            <wsdl:documentation>Borra un usuario por ID</wsdl:documentation>
+            <wsdl:input name="BorrarUsuario" message="tns:BorrarUsuario"/>
+            <wsdl:output name="BorrarUsuarioResponse" message="tns:BorrarUsuarioResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="ObtenerUsuarioPorId" parameterOrder="ObtenerUsuarioPorId">
+            <wsdl:documentation>Obtiene un usuario por su ID</wsdl:documentation>
+            <wsdl:input name="ObtenerUsuarioPorId" message="tns:ObtenerUsuarioPorId"/>
+            <wsdl:output name="ObtenerUsuarioPorIdResponse" message="tns:ObtenerUsuarioPorIdResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="ActualizarUsuario" parameterOrder="ActualizarUsuario">
+            <wsdl:documentation>Actualiza un usuario existente</wsdl:documentation>
+            <wsdl:input name="ActualizarUsuario" message="tns:ActualizarUsuario"/>
+            <wsdl:output name="ActualizarUsuarioResponse" message="tns:ActualizarUsuarioResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="Application" type="tns:Application">
+        <wsdlsoap11:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="ObtenerUsuario">
+            <wsdlsoap11:operation soapAction="ObtenerUsuario" style="document"/>
+            <wsdl:input name="ObtenerUsuario">
+                <wsdlsoap11:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="ObtenerUsuarioResponse">
+                <wsdlsoap11:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="CrearUsuario">
+            <wsdlsoap11:operation soapAction="CrearUsuario" style="document"/>
+            <wsdl:input name="CrearUsuario">
+                <wsdlsoap11:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="CrearUsuarioResponse">
+                <wsdlsoap11:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="BorrarUsuario">
+            <wsdlsoap11:operation soapAction="BorrarUsuario" style="document"/>
+            <wsdl:input name="BorrarUsuario">
+                <wsdlsoap11:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="BorrarUsuarioResponse">
+                <wsdlsoap11:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="ObtenerUsuarioPorId">
+            <wsdlsoap11:operation soapAction="ObtenerUsuarioPorId" style="document"/>
+            <wsdl:input name="ObtenerUsuarioPorId">
+                <wsdlsoap11:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="ObtenerUsuarioPorIdResponse">
+                <wsdlsoap11:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="ActualizarUsuario">
+            <wsdlsoap11:operation soapAction="ActualizarUsuario" style="document"/>
+            <wsdl:input name="ActualizarUsuario">
+                <wsdlsoap11:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="ActualizarUsuarioResponse">
+                <wsdlsoap11:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+</wsdl:definitions>
